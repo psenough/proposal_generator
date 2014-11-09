@@ -11,8 +11,8 @@ var Keyword = function(name) {
 
 var PG = function() {
 	this.characters = [
-		new Character('suit',		'suit.jpg'),
-		new Character('engineer',	'engineer.jpg')
+		new Character('suit',		'gfx/suit.jpg'),
+		new Character('engineer',	'gfx/engineer.jpg')
 	];
 	
 	this.selectedCharacter = -1;
@@ -21,6 +21,10 @@ var PG = function() {
     	new Keyword('web'),
     	new Keyword('desktop'),
     	];
+    	
+    this.eurosHour = 35;
+    this.hoursDay = 7;
+    this.buffer = 0.75;
 };
 
 PG.prototype = {
@@ -57,6 +61,12 @@ PG.prototype = {
 		
 		//todo: build responsabilities part
 		
+	},
+	
+	characterIs: function(type) {
+		if (this.selectedCharacter < 0) return false;
+		if (this.selectedCharacter > this.characters.length) return false;
+		return (this.characters[this.selectedCharacter].name == type);
 	}
 	
 }
