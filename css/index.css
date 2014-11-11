@@ -60,3 +60,12 @@ body {
 	background-color: green;
 }
 
+.character {
+	float: left;
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+	border: 2px solid transparent;
+}

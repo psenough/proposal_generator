@@ -34,7 +34,13 @@ PG.prototype = {
 		if (dom) {
 			dom.innerHTML = '';
 			for (var i=0; i<this.characters.length; i++) {
-				//todo: add character to div
+				// add characters to div
+				var ch = document.createElement('div');
+				ch.setAttribute('class', 'character');
+				ch.setAttribute('id', this.characters[i].name);
+				ch.style.backgroundImage = "url('"+this.characters[i].image+"')";
+				dom.appendChild(ch);
+				
 				//todo: if character clicked rebuild proposal to reflect it 
 			}
 		}
