@@ -9,6 +9,12 @@ var Keyword = function(name) {
 	this.toggled = false;
 };
 
+//todo: generate an automatic id
+
+//todo: allow sharing by passing id
+
+//try this with meteor.js?
+
 var PG = function() {
 	this.characters = [
 		new Character('suit',		'gfx/suit.jpg'),
@@ -41,31 +47,79 @@ PG.prototype = {
 				ch.style.backgroundImage = "url('"+this.characters[i].image+"')";
 				dom.appendChild(ch);
 				
-				//todo: if character clicked rebuild proposal to reflect it 
+				ch.addEventListener('click', function() { pg.rebuildProposal(); }, false);
+				
 			}
 		}
 	},
 	
 	listKeywords: function() {
+		var obj = this;
 		var dom = document.getElementById('leftdivkeywords');
 		if (dom) {
 			dom.innerHTML = '';
+			console.log(this.keywords);
 			for (var i=0; i<this.keywords.length; i++) {
-				//todo: add keyword to div
-				//todo: if keyword clicked toggle on and off and rebuild proposal to reflect it
+				
+				// add keyword to div
+				var keyword = document.createElement('div');
+				keyword.thisid = i;
+				var toggled = '';
+				if (this.keywords[i]['toggled']) toggled = ' toggled';
+				keyword.setAttribute('class', 'keyword'+toggled);
+				keyword.innerHTML = this.keywords[i]['name'];
+				dom.appendChild(keyword);
+				
+				
+				// if keyword clicked toggle on/off and rebuild proposal to reflect it
+				keyword.addEventListener('click',
+					function() {
+						obj.keywords[this.thisid]['toggled'] = !obj.keywords[this.thisid]['toggled'];
+						pg.listKeywords(); //todo: could replace this line with just changing the class of this
+						pg.rebuildProposal();
+					}, false);
 			}
 		}
 	},
 	
 	rebuildProposal: function() {
 		
-		//todo: build blablabla with image part
+		//todo: fields should be editable and stored automatically somehow
 		
-		//todo: build budget part
+		var dom = document.getElementById('rightdiv');
+		if (dom) {
+			dom.innerHTML = '';
+			
+			// title
+			var title = document.createElement('div');
+			title.setAttribute('id', 'title');
+			title.innerHTML = 'title';
+			dom.appendChild(title);
+			
+			// todo: chapter separators
+			
+			// build blablabla with image part
+			var intro = document.createElement('div');
+			intro.setAttribute('id', 'intro');
+			intro.innerHTML = 'lorem ipsum';
+			dom.appendChild(intro);
+				
+					
+			//todo: build budget part
+			var budget = document.createElement('div');
+			budget.setAttribute('id', 'budget');
+			var output = '<table>';
+			
+			output += '</table>';
+			
+			budget.innerHTML = output;
+			dom.appendChild(budget);
 		
-		//todo: build paying process part
+			//todo: build paying process part
 		
-		//todo: build responsabilities part
+			//todo: build responsabilities part
+		
+		}
 		
 	},
 	
