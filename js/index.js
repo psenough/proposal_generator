@@ -27,12 +27,12 @@ var PG = function() {
     this.keywords = [
 		new Keyword( 'web',
 				[
-					{'target':'specification', 'type':'add', 'value':5},
-					{'target':'database', 'type':'add', 'value':5},
-					{'target':'frontend design', 'type':'add', 'value':5},
-					{'target':'frontend development', 'type':'add', 'value':10},
+					{'target':'specification', 			'type':'add', 'value':5},
+					{'target':'database', 				'type':'add', 'value':5},
+					{'target':'frontend design', 		'type':'add', 'value':5},
+					{'target':'frontend development', 	'type':'add', 'value':10},
 					{'target':'backoffice development', 'type':'add', 'value':10},
-					{'target':'backoffice design', 'type':'add', 'value':5}
+					{'target':'backoffice design', 		'type':'add', 'value':5}
 				]
 		),				
 		new Keyword( 'desktop',
@@ -116,15 +116,25 @@ PG.prototype = {
 			intro.innerHTML = 'lorem ipsum';
 			dom.appendChild(intro);
 				
+			
+			this.processKeywords();
 					
 			//todo: build budget part
 			var budget = document.createElement('div');
 			budget.setAttribute('id', 'budget');
-			var output = '<table>';
-			this.processKeywords();
-			console.log(this.budget_software);
+			var output = '';
+			
+			output += 'Euros per hour: ' + this.eurosHour + '<br>';
+			output += 'Hour per day: ' + this.hoursDay + '<br>';
+			output += 'Risk factor buffer: ' + this.buffer + '<br>';
+			
+			output += '<table>';
 			for (key in this.budget_software) {
-				output += '<tr><td>'+key+'</td><td>'+this.budget_software[key]+'</td>';
+				output += '<tr>';
+				output += '<td>'+key+'</td>';
+				output += '<td>'+this.budget_software[key]+'</td>';
+				output += '<td>'+this.processPrice(this.budget_software[key])+'</td>';
+				output += '</tr>';
 			}
 			output += '</table>';
 			
@@ -137,6 +147,12 @@ PG.prototype = {
 		
 		}
 		
+	},
+	
+	processPrice: function(days) {
+		var n = ((days*this.eurosHour*this.hoursDay)/(this.buffer));
+		var output = n.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') + ' €';
+		return output;
 	},
 	
 	initBudgets: function() {

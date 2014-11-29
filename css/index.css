@@ -78,3 +78,7 @@ body {
 .toggled {
 	background-color: red;
 }
+
+table tr td {
+	text-align: right;
+}
