@@ -124,19 +124,27 @@ PG.prototype = {
 			budget.setAttribute('id', 'budget');
 			var output = '';
 			
-			output += 'Euros per hour: ' + this.eurosHour + '<br>';
-			output += 'Hour per day: ' + this.hoursDay + '<br>';
+			output += 'Cost per work hour: €' + this.eurosHour + '<br>';
+			output += 'Work hours per day: ' + this.hoursDay + '<br>';
 			output += 'Risk factor buffer: ' + this.buffer + '<br>';
 			
-			output += '<table>';
-			for (key in this.budget_software) {
+			if (Object.keys(this.budget_software).length > 0) {
+				output += '<h3>Software</h3>';
+				output += '<table>';
 				output += '<tr>';
-				output += '<td>'+key+'</td>';
-				output += '<td>'+this.budget_software[key]+'</td>';
-				output += '<td>'+this.processPrice(this.budget_software[key])+'</td>';
+				output += '<th>Task</th>';
+				output += '<th>Days</th>';
+				output += '<th>Cost</th>';
 				output += '</tr>';
+				for (key in this.budget_software) {
+					output += '<tr>';
+					output += '<td>'+key+'</td>';
+					output += '<td>'+this.budget_software[key]+'</td>';
+					output += '<td>'+this.processPrice(this.budget_software[key])+'</td>';
+					output += '</tr>';
+				}
+				output += '</table>';
 			}
-			output += '</table>';
 			
 			budget.innerHTML = output;
 			dom.appendChild(budget);
@@ -151,13 +159,13 @@ PG.prototype = {
 	
 	processPrice: function(days) {
 		var n = ((days*this.eurosHour*this.hoursDay)/(this.buffer));
-		var output = n.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') + ' €';
+		var output = '€'+n.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 		return output;
 	},
 	
 	initBudgets: function() {
-		this.budget_software = [];
-		this.budget_hardware = [];
+		this.budget_software = {};
+		this.budget_hardware = {};
 	},
 	
 	budgetFunction: function(array, operator) {
@@ -187,6 +195,7 @@ PG.prototype = {
 			
 			// pass for adding values
 			for(var j=0; j<this.keywords[i].operators.length; j++) {
+				if (!this.keywords[i].toggled) continue;
 				if (this.keywords[i].operators[j]['type'] == 'add')
 					this.budgetFunction(
 						this.budget_software,
@@ -196,6 +205,7 @@ PG.prototype = {
 			
 			// pass for multiplying values
 			for(var j=0; j<this.keywords[i].operators.length; j++) {
+				if (!this.keywords[i].toggled) continue;
 				if (this.keywords[i].operators[j]['type'] == 'mul')
 					this.budgetFunction(
 						this.budget_software,
