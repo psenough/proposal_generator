@@ -68,6 +68,11 @@ body {
 	height: 80px;
 	margin: 10px;
 	border: 2px solid transparent;
+	cursor: pointer;
+}
+
+.keyword {
+	cursor: pointer;
 }
 
 .toggled {
