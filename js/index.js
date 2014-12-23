@@ -26,19 +26,185 @@ var PG = function() {
 	this.selectedCharacter = 1;
 	
     this.keywords = [
-		new Keyword( 'web',
+    	new Keyword( 'simple webpage',
+				[
+					{'target':'specification', 			'type':'add', 'value':5},
+					{'target':'frontend design', 		'type':'add', 'value':5},
+					{'target':'frontend development', 	'type':'add', 'value':10},
+					{'target':'validation', 			'type':'add', 'value':5}
+				]
+		),	
+		new Keyword( 'simple website',
 				[
 					{'target':'specification', 			'type':'add', 'value':5},
 					{'target':'database', 				'type':'add', 'value':5},
 					{'target':'frontend design', 		'type':'add', 'value':5},
 					{'target':'frontend development', 	'type':'add', 'value':10},
 					{'target':'backoffice development', 'type':'add', 'value':10},
-					{'target':'backoffice design', 		'type':'add', 'value':5}
+					{'target':'backoffice design', 		'type':'add', 'value':5},
+					{'target':'validation', 			'type':'add', 'value':5},
+					{'target':'quality assurance', 		'type':'add', 'value':5}
 				]
 		),				
-		new Keyword( 'desktop',
-				[{'target':'frontend development', 'type':'add', 'value':30}]
+		new Keyword( 'simple desktop application',
+				[
+					{'target':'specification', 			'type':'add', 'value':5},
+					{'target':'frontend design', 		'type':'add', 'value':5},
+					{'target':'frontend development', 	'type':'add', 'value':10},
+					{'target':'validation', 			'type':'add', 'value':5},					
+					{'target':'quality assurance', 		'type':'add', 'value':5}
+				]
 		),
+		new Keyword( 'simple mobile application',
+				[
+					{'target':'specification', 			'type':'add', 'value':5},
+					{'target':'database', 				'type':'add', 'value':5},
+					{'target':'frontend design', 		'type':'add', 'value':5},
+					{'target':'frontend development', 	'type':'add', 'value':15},
+					{'target':'backoffice development', 'type':'add', 'value':5},
+					{'target':'backoffice design', 		'type':'add', 'value':5},
+					{'target':'validation', 			'type':'add', 'value':5},					
+					{'target':'quality assurance', 		'type':'add', 'value':5}	
+				]
+		),
+		
+		/*new Keyword( 'needs minor changes',
+				[
+					{'target':'specification', 			'type':'add', 'value':5},
+					{'target':'frontend design', 		'type':'add', 'value':5},
+					{'target':'frontend development', 	'type':'add', 'value':5},
+					{'target':'backoffice development', 'type':'add', 'value':5},
+					{'target':'quality assurance', 		'type':'add', 'value':5}	
+				]
+		),*/
+		
+		new Keyword( 'needs to communicate',
+				[
+					{'target':'specification', 			'type':'add', 'value':5},
+					{'target':'communication module', 	'type':'add', 'value':5},
+					{'target':'quality assurance', 		'type':'add', 'value':5}	
+				]
+		),			
+		
+		new Keyword( 'needs physical interface',
+				[
+					{'target':'specification', 			'type':'add', 'value':5},
+					{'target':'interaction design', 	'type':'add', 'value':5},
+					{'target':'interaction module', 	'type':'add', 'value':5},
+					{'target':'frontend design', 		'type':'add', 'value':5},
+					{'target':'frontend development', 	'type':'add', 'value':5},
+					{'target':'validation', 			'type':'add', 'value':5},
+					{'target':'quality assurance', 		'type':'add', 'value':5}	
+				]
+		),			
+		/*new Keyword( 'needs to do something',
+				[
+					{'target':'specification', 			'type':'add', 'value':5},
+					{'target':'frontend development', 	'type':'add', 'value':5},
+					{'target':'quality assurance', 		'type':'add', 'value':5}	
+				]
+		),*/
+				
+		/*new Keyword( 'we know perfectly what we want',
+				[
+					{'target':'specification', 			'type':'add', 'value':10},
+					{'target':'frontend redesign', 		'type':'add', 'value':10},
+					{'target':'frontend development', 	'type':'add', 'value':5},
+					{'target':'backoffice development', 'type':'add', 'value':5},
+					{'target':'quality assurance', 		'type':'add', 'value':5}	
+				]
+		),*/
+		
+		new Keyword( '3D animation content',
+				[
+					{'target':'specification', 			'type':'add', 'value':5},
+					{'target':'3D modelling', 			'type':'add', 'value':10},
+					{'target':'3D animation', 			'type':'add', 'value':10},
+					{'target':'3D engine integration', 	'type':'add', 'value':10},
+					{'target':'materials / shaders', 	'type':'add', 'value':10},
+					{'target':'validation', 			'type':'add', 'value':5},
+					{'target':'quality assurance', 		'type':'add', 'value':5}	
+				]
+		),
+
+		new Keyword( 'video content',
+				[
+					{'target':'specification', 			'type':'add', 'value':5},
+					{'target':'shooting', 				'type':'add', 'value':5},
+					{'target':'cutting/editing', 		'type':'add', 'value':5},
+					{'target':'validation', 			'type':'add', 'value':5},
+					{'target':'quality assurance', 		'type':'add', 'value':5}	
+				]
+		),		
+		new Keyword( 'augmented reality',
+				[
+					{'target':'specification', 			'type':'add', 'value':5},
+					{'target':'augmented reality module', 'type':'add', 'value':5},
+					{'target':'frontend development', 	'type':'add', 'value':5},
+					{'target':'validation', 			'type':'add', 'value':5},
+					{'target':'quality assurance', 		'type':'add', 'value':5}	
+				]
+		),
+		new Keyword( 'computer vision',
+				[
+					{'target':'specification', 			'type':'add', 'value':5},
+					{'target':'computer vision module', 'type':'add', 'value':5},
+					{'target':'frontend development', 	'type':'add', 'value':5},
+					{'target':'validation', 			'type':'add', 'value':5},
+					{'target':'quality assurance', 		'type':'add', 'value':5}	
+				]
+		),
+		
+		new Keyword( 'turnkey solution',
+				[
+					{'target':'documentation', 			'type':'add', 'value':5},
+					{'target':'validation', 			'type':'add', 'value':5},
+					{'target':'quality assurance', 		'type':'add', 'value':10}	
+				]
+		),
+
+		/*new Keyword( 'future partnership',
+				[
+					{'target':'documentation', 			'type':'add', 'value':5},
+					{'target':'validation', 			'type':'add', 'value':5},
+					{'target':'quality assurance', 		'type':'add', 'value':10}	
+				]
+		),*/
+		
+		new Keyword( 'simple game',
+				[
+					{'target':'specification', 			'type':'add', 'value':5},
+					{'target':'interaction design', 	'type':'add', 'value':5},
+					{'target':'frontend design', 		'type':'add', 'value':5},
+					{'target':'frontend development', 	'type':'add', 'value':10},
+					{'target':'validation', 			'type':'add', 'value':5},					
+					{'target':'quality assurance', 		'type':'add', 'value':5}
+				]
+		),
+		
+		/*new Keyword( 'installation',
+				[
+					{'target':'specification', 			'type':'add', 'value':5},
+					{'target':'interaction design', 	'type':'add', 'value':5},
+					{'target':'frontend development', 	'type':'add', 'value':10},
+					{'target':'travelling expenses', 	'type':'add', 'value':5},					
+					{'target':'validation', 			'type':'add', 'value':5},					
+					{'target':'quality assurance', 		'type':'add', 'value':5}
+				]
+		),*/
+		
+		//todo: we have the design
+		//todo: we have someone's sourcecode
+		//todo: can you do this project from someone else's proposal?
+		//todo: urgency in budget
+		//todo: urgency in delivery
+		//todo: already exists in market
+		//todo: can you do it cheaper?
+		//todo: prototype
+		//todo: robotic customization
+		//todo: workshop
+		
+		
 	];
     	
     this.eurosHour = 35;
@@ -146,13 +312,20 @@ PG.prototype = {
 				output += '<th>Days</th>';
 				output += '<th>Cost</th>';
 				output += '</tr>';
+				var accdays = 0;
 				for (key in this.budget_software) {
 					output += '<tr>';
 					output += '<td>'+key+'</td>';
 					output += '<td>'+this.budget_software[key]+'</td>';
 					output += '<td>'+this.processPrice(this.budget_software[key])+'</td>';
 					output += '</tr>';
+					accdays += this.budget_software[key];
 				}
+				output += '<tr>';
+				output += '<td>TOTAL</td>';
+				output += '<td>'+accdays+'</td>';
+				output += '<td>'+this.processPrice(accdays)+'</td>';
+				output += '</tr>';
 				output += '</table>';
 			}
 			
