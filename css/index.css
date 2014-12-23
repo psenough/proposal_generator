@@ -71,6 +71,10 @@ body {
 	cursor: pointer;
 }
 
+.selected {
+	border: 2px solid grey;
+}
+
 .keyword {
 	cursor: pointer;
 }

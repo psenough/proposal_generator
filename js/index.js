@@ -1,7 +1,8 @@
 
-var Character = function(name, image) {
+var Character = function(name, image, desc) {
 	this.name = name;
 	this.image = image;
+	this.desc = desc;
 };
 
 var Keyword = function(name, operators) {
@@ -18,11 +19,11 @@ var Keyword = function(name, operators) {
 
 var PG = function() {
 	this.characters = [
-		new Character('suit',		'gfx/suit.jpg'),
-		new Character('engineer',	'gfx/engineer.jpg')
+		new Character('suit',		'gfx/suit.jpg',		'a suit, never developed a thing in his life, no idea of work cost, thinks last minute changes are ok'),
+		new Character('engineer',	'gfx/engineer.jpg',	'an engineer, knows how things get done, just wants a fair quote')
 	];
 	
-	this.selectedCharacter = -1;
+	this.selectedCharacter = 1;
 	
     this.keywords = [
 		new Keyword( 'web',
@@ -54,12 +55,22 @@ PG.prototype = {
 			for (var i=0; i<this.characters.length; i++) {
 				// add characters to div
 				var ch = document.createElement('div');
-				ch.setAttribute('class', 'character');
+				var selected = '';
+				//console.log(pg.selectedCharacter + ' ' + i);
+				if (pg.selectedCharacter == i) selected = ' selected';
+				ch.setAttribute('class', 'character'+selected);
 				ch.setAttribute('id', this.characters[i].name);
+				ch.setAttribute('title', this.characters[i].desc);
 				ch.style.backgroundImage = "url('"+this.characters[i].image+"')";
+				ch.index = i;
 				dom.appendChild(ch);
 				
-				ch.addEventListener('click', function() { pg.rebuildProposal(); }, false);
+				ch.addEventListener('click', function() {
+						//console.log(pg.selectedCharacter + ' ' + this.index);
+						pg.selectedCharacter = this.index;
+						pg.listCharacters();
+						pg.rebuildProposal();
+					}, false);
 				
 			}
 		}
@@ -81,7 +92,6 @@ PG.prototype = {
 				keyword.setAttribute('class', 'keyword'+toggled);
 				keyword.innerHTML = this.keywords[i]['name'];
 				dom.appendChild(keyword);
-				
 				
 				// if keyword clicked toggle on/off and rebuild proposal to reflect it
 				keyword.addEventListener('click',
