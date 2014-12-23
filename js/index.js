@@ -1,4 +1,6 @@
 
+//todo: bs'o'meter on the top right
+
 var Character = function(name, image, desc) {
 	this.name = name;
 	this.image = image;
