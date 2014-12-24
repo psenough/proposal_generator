@@ -283,10 +283,13 @@ PG.prototype = {
 			// title
 			var title = document.createElement('div');
 			title.setAttribute('id', 'title');
-			title.innerHTML = 'title';
+			title.innerHTML = 'Title of Proposal';
 			dom.appendChild(title);
-			
-			// todo: chapter separators
+						
+			// intro header
+			var introh1 = document.createElement('h1');
+			introh1.innerHTML = '1. Introduction';
+			dom.appendChild(introh1);
 			
 			// build blablabla with image part
 			var intro = document.createElement('div');
@@ -296,6 +299,11 @@ PG.prototype = {
 				
 			
 			this.processKeywords();
+			
+			// budget header
+			var budgeth1 = document.createElement('h1');
+			budgeth1.innerHTML = '2. Budget';
+			dom.appendChild(budgeth1);
 					
 			//todo: build budget part
 			var budget = document.createElement('div');
@@ -307,7 +315,7 @@ PG.prototype = {
 			output += 'Risk factor buffer: ' + this.buffer + '<br>';
 			
 			if (Object.keys(this.budget_software).length > 0) {
-				output += '<h3>Software</h3>';
+				//output += '<h3>Software</h3>';
 				output += '<table>';
 				output += '<tr>';
 				output += '<th>Task</th>';
